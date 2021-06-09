@@ -1,12 +1,13 @@
+const http = require('http');
 const express = require('express');
+const socketio = require('socket.io');
+const cors = require('cors');
 const app = express();
-const server = require('http').Server(app);
+const server = http.createServer(app);
+const io = socketio(server)
+app.use(cors());
 
-const io = require('socket.io')(server, {
-    cors: {
-        origin: '*',
-    },
-});
+
 let users = [];
 io.on('connection', (socket) => {
     let clientId = socket.id;
