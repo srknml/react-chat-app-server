@@ -40,4 +40,4 @@ io.on('connection', (socket) => {
     });
 });
 
-app.listen(process.env.PORT || 5000, () => console.log('Server is running...'));
+server.listen(process.env.PORT || 5000, () => console.log('Server is running...'));
