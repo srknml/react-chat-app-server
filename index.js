@@ -7,7 +7,7 @@ const app = express();
 const server = https.createServer(app);
 const io = socketio(server, {
     cors: {
-        origin: 'https://schude-chat-app.netlify.app/',
+        origin: 'https://schude-react-chat-app.herokuapp.com/',
     },
 });
 
