@@ -5,9 +5,15 @@ const socketio = require('socket.io');
 const app = express();
 const server = http.createServer(app);
 
+// const io = socketio(server, {
+//     cors: {
+//         origin: '*',
+//     },
+// });
 const io = socketio(server, {
     cors: {
-        origin: '*',
+        origin: 'https://schude-chat-app.netlify.app/',
+        methods: ['GET', 'POST'],
     },
 });
 
@@ -44,7 +50,7 @@ io.on('connection', (socket) => {
         io.emit('updateUsers', users);
     });
 });
-var server_port = process.env.PORT || 80;
+var server_port = process.env.PORT || 4000;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
 server.listen(server_port, server_host, function () {
     console.log('Listening on port ', server_port);
