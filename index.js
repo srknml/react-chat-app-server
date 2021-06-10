@@ -1,15 +1,25 @@
-const https = require('http');
+const http = require('http');
 const express = require('express');
-const socketio = require('socket.io');
+// const socketio = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-const server = https.createServer(app);
-const io = socketio(server, {
+const server = http.createServer(app);
+
+const io = require('socket.io')(httpServer, {
     cors: {
-        origin: 'https://schude-react-chat-app.herokuapp.com/',
+        origin: 'https://schude-chat-app.netlify.app/',
+        methods: ['GET', 'POST'],
     },
 });
+// const io = socketio(server, {
+//     cors: {
+//       origin: "https://schude-chat-app.netlify.app/",
+//       methods: ["GET", "POST"],
+//       allowedHeaders: ["my-custom-header"],
+//       credentials: true
+//     }
+//   });
 
 let users = [];
 io.on('connection', (socket) => {
@@ -18,7 +28,7 @@ io.on('connection', (socket) => {
         user['clientId'] = clientId;
         users = [...users, user];
 
-        socket.emit("currentUser",user)
+        socket.emit('currentUser', user);
         io.emit('updateUsers', users);
 
         socket.broadcast.emit('message', {
