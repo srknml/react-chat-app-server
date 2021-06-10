@@ -4,7 +4,6 @@ const socketio = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-
 const io = socketio(server, {
     cors: {
         origin: 'https://schude-chat-app.netlify.app',
@@ -23,7 +22,7 @@ io.on('connection', (socket) => {
         io.emit('updateUsers', users);
 
         socket.broadcast.emit('message', {
-            user,
+            ...user,
             message: `${user.username} has joined chat!`,
         });
     });
@@ -37,15 +36,15 @@ io.on('connection', (socket) => {
         users = users.filter((user) => {
             return user.clientId !== clientId;
         });
-
         io.emit('message', {
-            user: disconnectedUser,
+            username: disconnectedUser.username,
+            clientId: disconnectedUser.clientId,
             message: `${disconnectedUser.username} has left chat!`,
         });
         io.emit('updateUsers', users);
     });
 });
-var server_port = process.env.PORT || 4000;
+var server_port = process.env.PORT || 5000;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
 server.listen(server_port, server_host, function () {
     console.log('Listening on port ', server_port);
