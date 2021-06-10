@@ -4,10 +4,10 @@ const socketio = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer(app);
 const io = socketio(server, {
     cors: {
-        origin: '*',
+        origin: 'https://schude-chat-app.netlify.app/',
     },
 });
 
