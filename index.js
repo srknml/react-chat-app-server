@@ -1,4 +1,4 @@
-const https = require('https');
+const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 
@@ -8,7 +8,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 // const io = socketio(server, {
 //     cors: {
