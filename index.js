@@ -11,7 +11,7 @@ const io = socketio(server, {
     },
 });
 
-app.use(cors({origin: '*'}));
+// app.use(cors({origin: '*'}));
 
 let users = [];
 io.on('connection', (socket) => {
