@@ -7,11 +7,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
     cors: {
-        origin: '*',
+        origin: 'https://schude-chat-app.netlify.app/',
     },
 });
-
-// app.use(cors({origin: '*'}));
 
 let users = [];
 io.on('connection', (socket) => {
