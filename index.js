@@ -11,7 +11,6 @@ const io = socketio(server, {
     },
 });
 
-
 let users = [];
 io.on('connection', (socket) => {
     let clientId = socket.id;
