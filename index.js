@@ -1,12 +1,12 @@
 const http = require('http');
 const express = require('express');
-// const socketio = require('socket.io');
+const socketio = require('socket.io');
 const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
 
-const io = require('socket.io')(httpServer, {
+const io = require('socket.io')(server, {
     cors: {
         origin: 'https://schude-chat-app.netlify.app/',
         methods: ['GET', 'POST'],
