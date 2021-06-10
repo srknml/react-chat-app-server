@@ -1,25 +1,15 @@
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
-const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
 
-const io = require('socket.io')(server, {
+const io = socketio(server, {
     cors: {
-        origin: 'https://schude-chat-app.netlify.app/',
-        methods: ['GET', 'POST'],
+        origin: '*',
     },
 });
-// const io = socketio(server, {
-//     cors: {
-//       origin: "https://schude-chat-app.netlify.app/",
-//       methods: ["GET", "POST"],
-//       allowedHeaders: ["my-custom-header"],
-//       credentials: true
-//     }
-//   });
 
 let users = [];
 io.on('connection', (socket) => {
